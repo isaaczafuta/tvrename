@@ -11,6 +11,17 @@ def rename():
     episode_names = get_episode_names(show_name, season_num)
     files = sorted(cwd.iterdir())
 
+    if len(episode_names) != len(files):
+      print("Found metadata, but the number of episodes didn't match."
+      print()
+      print("Found episode names:")
+      for episode in episode_names:
+        print(episode)
+      print("Existing episode names")
+      for file_ in files:
+        print(file_)
+      return
+     
     assert len(episode_names) == len(files)
 
     for file_, episode_name in zip(files, episode_names):
